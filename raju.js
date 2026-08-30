@@ -54,6 +54,7 @@ const config = require("./config");
 const chalk = require("chalk");
 const store = require("./lib/store");
 const { registerAdminPanel } = require("./lib/adminPanel");
+const logBuffer = require("./lib/logBuffer");
 const thumbnail = fs.existsSync(store.resolvePath("./storage/thumbnail.jpg"))
   ? fs.readFileSync(store.resolvePath("./storage/thumbnail.jpg"))
   : null;
@@ -229,7 +230,7 @@ Click the ORDER button below to buy`;
 // Logging System
 // =====================================================================
 
-const log = {
+const logRaw = {
   success: (msg) => console.log(chalk.green.bold("✓ ") + chalk.white(msg)),
   error: (msg) => console.log(chalk.red.bold("✗ ") + chalk.white(msg)),
   warning: (msg) => console.log(chalk.yellow.bold("⚠ ") + chalk.white(msg)),
@@ -240,6 +241,10 @@ const log = {
   telegram: (msg) => console.log(chalk.blue.bold("✈️ ") + chalk.white(msg)),
   system: (msg) => console.log(chalk.gray.bold("⚙️  ") + chalk.white(msg)),
 };
+
+// تغليف اللوقات: كل سطر يُحفظ في حلقة بالذاكرة ليعرض داخل لوحة التحكم.
+// الحجم ثابت (آخر 200 سطر) فلا ينمو الاستهلاك مع الوقت.
+const log = logBuffer.wrapLogger(logRaw);
 
 // =====================================================================
 // Cooldown System Integration
@@ -1674,6 +1679,7 @@ registerAdminPanel(bot, {
   log,
   isOwner,
   isReseller,
+  hasAccess,
   waClients,
   clearAllSessions,
   deleteSessionForUser,
@@ -1686,6 +1692,7 @@ registerAdminPanel(bot, {
   saveBlacklist,
   saveWhitelist,
   gracefulShutdown,
+  logBuffer,
   startedAt: Date.now(),
 });
 
