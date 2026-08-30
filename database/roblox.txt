@@ -1,0 +1,6 @@
+# قائمة حسابات روبلوكس
+# يمكن استخدامها للتخزين أو لأغراض أخرى
+# التنسيق: username|password|email
+
+example_user1|password123|user1@email.com
+example_user2|pass456|user2@email.com

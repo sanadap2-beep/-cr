@@ -1,0 +1,13 @@
+{
+  "freeMode": false,
+  "maintenanceMode": false,
+  "autoReconnect": true,
+  "antiSpam": true,
+  "rateLimit": 30,
+  "maxSessions": 10,
+  "defaultCooldown": 20,
+  "maxRetries": 3,
+  "reconnectDelay": 2000,
+  "lastUpdated": "2025-01-01T00:00:00.000Z",
+  "version": "4.0.0"
+}

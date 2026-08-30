@@ -1,0 +1,23 @@
+# تبعيات
+node_modules/
+
+# أسرار — لا تُرحّل أبدًا
+.env
+.env.*
+!.env.example
+
+# جلسات واتساب (بيانات حسّاسة — مفاتيح تشفير)
+session/
+
+# حالة وقت التشغيل المتغيرة
+storage/cooldown.json
+storage/cooldown1.json
+temp/
+
+# لوقات
+*.log
+logs/
+
+# نظام
+.DS_Store
+Thumbs.db
